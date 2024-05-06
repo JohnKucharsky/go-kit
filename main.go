@@ -45,6 +45,9 @@ func main() {
 			os.Exit(-1)
 		}
 		driver, err := postgres.WithInstance(db, &postgres.Config{})
+		if err != nil {
+			fmt.Println("error running migrations:", err.Error())
+		}
 		m, err := migrate.NewWithDatabaseInstance(
 			"file:///Projects/go-kit/migrations",
 			"postgres", driver)
