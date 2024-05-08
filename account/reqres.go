@@ -26,11 +26,11 @@ type (
 	}
 )
 
-func encodeResponse(ctx context.Context, w http.ResponseWriter, response interface{}) error {
+func encodeResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
 	return json.NewEncoder(w).Encode(response)
 }
 
-func decodeUserReq(ctx context.Context, r *http.Request) (interface{}, error) {
+func decodeUserReq(_ context.Context, r *http.Request) (interface{}, error) {
 	var req CreateUserReq
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
@@ -39,7 +39,7 @@ func decodeUserReq(ctx context.Context, r *http.Request) (interface{}, error) {
 	return req, nil
 }
 
-func decodeEmailReq(ctx context.Context, r *http.Request) (interface{}, error) {
+func decodeEmailReq(_ context.Context, r *http.Request) (interface{}, error) {
 	var req GetUserRequest
 	vars := mux.Vars(r)
 
